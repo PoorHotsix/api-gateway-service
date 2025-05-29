@@ -58,7 +58,7 @@ logging:
     org.springframework.security: DEBUG
     org.springframework.cloud.gateway: DEBUG
     root: INFO
-    "[com.example.api_gateway_server]": DEBUG
+    "[com.inkcloud.api_gateway_server]": DEBUG
 
 
 #-------------------------------------------------------------------------------
