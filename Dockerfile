@@ -6,7 +6,7 @@ FROM openjdk:17-slim as build
 WORKDIR /application
 
 # ARG : Dockerfile에서 빌드 타임(Build time)에 값을 설정할 수 있는 변수를 정의하는 명령어
-ARG JAR_FILE=build/libs/api-gateway-server-0.0.1-SNAPSHOT.jar
+ARG JAR_FILE=build/libs/api-gateway-service-0.0.1-SNAPSHOT.jar
 
 COPY ${JAR_FILE}  application.jar
 

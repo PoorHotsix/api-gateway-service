@@ -3,7 +3,7 @@ server:
 
 spring:
   application:
-    name: api-gateway-server
+    name: api-gateway-service
   main:
     web-application-type: reactive
 
