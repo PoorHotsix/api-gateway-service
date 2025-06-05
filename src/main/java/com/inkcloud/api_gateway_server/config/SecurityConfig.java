@@ -12,22 +12,14 @@ import static org.springframework.security.config.Customizer.withDefaults;
 @Configuration
 @EnableWebFluxSecurity
 public class SecurityConfig {
+
     @Bean
-    public SecurityWebFilterChain securityFilterChain(ServerHttpSecurity http){
-        
-        http
-            .cors(withDefaults()) 
-            .csrf(ServerHttpSecurity.CsrfSpec::disable)
-            .formLogin(ServerHttpSecurity.FormLoginSpec::disable)
-            .authorizeExchange(auth ->auth
-                .pathMatchers(org.springframework.http.HttpMethod.OPTIONS, "/**").permitAll() // 이 줄 추가!
-                .pathMatchers("/api/v1/members/signup/**", "/api/v1/members/login/**", "/api/v1/members/password/**").permitAll()
-                .anyExchange().authenticated()
-
-            )
-            .oauth2ResourceServer(oauth2 -> oauth2.jwt(Customizer.withDefaults()));
-
-        return http.build();
-
+    public SecurityWebFilterChain securityFilterChain(ServerHttpSecurity http) {
+        return http
+                .csrf(ServerHttpSecurity.CsrfSpec::disable)
+                .authorizeExchange(exchange -> exchange
+                        .anyExchange().permitAll()
+                )
+                .build();
     }
 }
