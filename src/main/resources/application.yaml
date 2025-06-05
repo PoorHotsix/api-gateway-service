@@ -1,9 +1,11 @@
 server:
-  port: 25000
+  port: ${SERVER_PORT}
 
 spring:
   application:
     name: api-gateway-service
+  profiles:
+    active: ${SRPING_PROFILES_ACTIVE}
   main:
     web-application-type: reactive
 
@@ -14,7 +16,7 @@ spring:
           enabled: true # Eureka에 등록된 서비스 이름 기반으로 라우팅 가능
       routes:
         - id: member-service
-          uri: lb://member-service
+          uri: ${MEMBER_SERVICE_API_URL}
           predicates:
             - Path=/api/v1/members/**
           filters:
