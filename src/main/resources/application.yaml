@@ -49,8 +49,8 @@ spring:
     oauth2:
       resourceserver:
         jwt:
-          issuer-uri: http://localhost:8080/realms/inkcloud
-          jwk-set-uri: ${spring.security.oauth2.resourceserver.jwt.issuer-uri}/protocol/openid-connect/certs
+          issuer-uri: ${KEYCLOAK_ISSUER_URI}
+          jwk-set-uri: ${KEYCLOAK_ISSUER_URI}/protocol/openid-connect/certs
           # jwk-set-uri: http://keycloak:8080/realms/test-realm/protocol/openid-connect/certs
 
 logging:  
@@ -65,12 +65,12 @@ logging:
 # Eureka-Server 에 자가 등록 설정
 #-------------------------------------------------------------------------------
 
-eureka:
-  instance:
-    instance-id: ${spring.application.name}:${spring.cloud.client.hostname}:${server.port}
-    prefer-ip-address: true   # Eureka 클라이언트가 자신을 등록할 때, 호스트 이름 대신 IP 주소를 사용하여 서비스 레지스리에 등록한다.
-  client:  
-    register-with-eureka: true  
-    fetch-registry: true
-    service-url:
-      defaultZone: http://localhost:8761/eureka
+# eureka:
+#   instance:
+#     instance-id: ${spring.application.name}:${spring.cloud.client.hostname}:${server.port}
+#     prefer-ip-address: true   # Eureka 클라이언트가 자신을 등록할 때, 호스트 이름 대신 IP 주소를 사용하여 서비스 레지스리에 등록한다.
+#   client:  
+#     register-with-eureka: true  
+#     fetch-registry: true
+#     service-url:
+#       defaultZone: http://localhost:8761/eureka

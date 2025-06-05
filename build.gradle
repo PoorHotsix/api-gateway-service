@@ -41,13 +41,13 @@ dependencies {
     //implementation 'org.springframework.cloud:spring-cloud-starter-bootstrap'              // bootstrap.yml 사용하는 경우 반드시 설정해야 한다.
     //implementation 'org.springframework.cloud:spring-cloud-config-client'                  // Spring Cloud Config Client    
     implementation 'org.springframework.cloud:spring-cloud-starter-gateway'                  // Spring Cloud API Gateway Server
-    //implementation 'org.springframework.cloud:spring-cloud-starter-netflix-eureka-client'    // Spring Cloud Eureka Client
+    implementation 'org.springframework.cloud:spring-cloud-starter-netflix-eureka-client'    // Spring Cloud Eureka Client
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	compileOnly 'org.projectlombok:lombok'
 	developmentOnly 'org.springframework.boot:spring-boot-devtools'
 	annotationProcessor 'org.projectlombok:lombok'
-	//testImplementation 'org.springframework.boot:spring-boot-starter-test'
-	//testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
 	implementation 'org.springframework.boot:spring-boot-starter-security'                 //Spring Security 
     implementation 'org.springframework.boot:spring-boot-starter-oauth2-resource-server'   //JWT 인증
     implementation 'org.springframework.boot:spring-boot-starter-oauth2-client'  		   //tokenrealy 필수
