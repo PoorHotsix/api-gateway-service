@@ -1,4 +1,4 @@
-package com.inkcloud.api_gateway_server;
+package com.inkcloud.api_gateway_service;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

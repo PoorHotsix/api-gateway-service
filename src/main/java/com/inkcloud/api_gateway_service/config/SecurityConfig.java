@@ -1,4 +1,4 @@
-package com.inkcloud.api_gateway_server.config;
+package com.inkcloud.api_gateway_service.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
