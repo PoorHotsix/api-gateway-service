@@ -23,8 +23,8 @@ public class SecurityConfig {
                 .pathMatchers(org.springframework.http.HttpMethod.OPTIONS, "/**").permitAll() // 이 줄 추가!
                 .pathMatchers("/api/v1/members/signup/**", "/api/v1/members/login/**", "/api/v1/members/password/**").permitAll()
                 // .pathMatchers("/api/v1/members/**").permitAll()
-                .pathMatchers("/api/v1/payments/**").permitAll()
-                .pathMatchers("/api/v1/orders/**").permitAll()
+                .pathMatchers("/api/v1/payments/webhook").permitAll()
+                // .pathMatchers("/api/v1/orders/**").permitAll()
                 .pathMatchers("/api/v1/products/**").permitAll()
                 .pathMatchers("/api/v1/categories/**").permitAll()
                 .anyExchange().authenticated()
