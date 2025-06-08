@@ -19,6 +19,12 @@ spring:
             - Path=/api/v1/members/**
           filters:
             - TokenRelay
+        - id: review-service
+          uri: lb://review-service
+          predicates:
+            - Path=/api/v1/reviews/**
+          filters:
+            - TokenRelay
        
        
       # Spring Cloud Gateway에서 CORS(Cross-Origin Resource Sharing)를 전역(Global)으로 설정
