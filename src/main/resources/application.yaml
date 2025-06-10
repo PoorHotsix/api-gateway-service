@@ -19,10 +19,25 @@ spring:
             - Path=/api/v1/members/**
           filters:
             - TokenRelay
+
         - id: review-service
           uri: lb://review-service
           predicates:
             - Path=/api/v1/reviews/**
+          filters:
+            - TokenRelay
+
+        - id: product-service
+          uri: lb://product-service
+          predicates:
+            - Path=/api/v1/products/**
+          filters:
+            - TokenRelay
+
+        - id: product-service2
+          uri: lb://product-service
+          predicates:
+            - Path=/api/v1/categories/**
           filters:
             - TokenRelay
        

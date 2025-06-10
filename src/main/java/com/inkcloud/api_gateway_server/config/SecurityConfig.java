@@ -22,6 +22,7 @@ public class SecurityConfig {
                 .pathMatchers(org.springframework.http.HttpMethod.OPTIONS, "/**").permitAll()
                 .pathMatchers("/api/v1/members/signup/**", "/api/v1/members/login/**", "/api/v1/members/password/**").permitAll()
                 .pathMatchers("/api/v1/reviews/products/**").permitAll() // 책별 리뷰 조회는 토큰 없이 허용
+                .pathMatchers("/api/v1/products/**", "/api/v1/categories/**").permitAll() // 책별 리뷰 조회는 토큰 없이 허용
                 .anyExchange().authenticated()
             )
             .oauth2ResourceServer(oauth2 -> oauth2.jwt(Customizer.withDefaults()));
