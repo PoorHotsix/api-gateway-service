@@ -18,24 +18,48 @@ spring:
             - Path=/api/v1/members/**
           filters:
             - TokenRelay
-        - id: order-service
-          uri: lb://order-service
-          predicates:
-          - Path=/api/v1/orders/**
-          filters:
-          - TokenRelay
         - id: payment-service
           uri: lb://payment-service
           predicates:
           - Path=/api/v1/payments/**
           filters:
           - TokenRelay
+        - id: review-service
+          uri: lb://review-service
+          predicates:
+            - Path=/api/v1/reviews/**
+          filters:
+            - TokenRelay
+
         - id: product-service
           uri: lb://product-service
           predicates:
-          - Path=/api/v1/**
-          # filters:
-          # - TokenRelay
+            - Path=/api/v1/products/**
+          filters:
+            - TokenRelay
+
+        - id: product-service2
+          uri: lb://product-service
+          predicates:
+            - Path=/api/v1/categories/**
+          filters:
+            - TokenRelay
+
+        - id: order-service
+          uri: lb://order-service
+          predicates:
+            - Path=/api/v1/orders/**
+          filters:
+            - TokenRelay
+
+        - id: stats-service
+          uri: lb://stats-service
+          predicates:
+            - Path=/api/v1/stats/**
+          filters:
+            - TokenRelay
+      
+       
       # Spring Cloud Gateway에서 CORS(Cross-Origin Resource Sharing)를 전역(Global)으로 설정
       globalcors:
         corsConfigurations:
