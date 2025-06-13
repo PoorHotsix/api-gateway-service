@@ -26,6 +26,13 @@ spring:
             - Path=/api/v1/categories/**
           filters:
             - TokenRelay
+
+        - id: member-service
+          uri: lb://member-service
+          predicates:
+            - Path=/api/v1/members/**
+          filters:
+            - TokenRelay
       
        
       # Spring Cloud Gateway에서 CORS(Cross-Origin Resource Sharing)를 전역(Global)으로 설정
@@ -42,6 +49,7 @@ spring:
               - PUT
               - DELETE
               - OPTIONS
+              - PATCH
             allowedHeaders:
               - "*"
             allowCredentials: true
@@ -52,13 +60,13 @@ spring:
   # jwk-set-uri : Keycloak이 사용하는 공개 키 목록을 제공하는 주소로, Spring Security는 이 경로에서 JWT 서명을 검증하기 위한 공개키를 받아온다.
   # curl -i http://localhost:8080/realms/react-app/.well-known/openid-configuration
   #-----------------------------------------------------------------------
-  # security:
-  #   oauth2:
-  #     resourceserver:
-  #       jwt:
-  #         issuer-uri: ${KEYCLOAK_ISSUER_URI}
-  #         jwk-set-uri: ${KEYCLOAK_ISSUER_URI}/protocol/openid-connect/certs
-  #         # jwk-set-uri: http://keycloak:8080/realms/test-realm/protocol/openid-connect/certs
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: ${KEYCLOAK_ISSUER_URI}
+          jwk-set-uri: ${KEYCLOAK_ISSUER_URI}/protocol/openid-connect/certs
+          # jwk-set-uri: http://keycloak:8080/realms/test-realm/protocol/openid-connect/certs
 
 logging:  
   level:
