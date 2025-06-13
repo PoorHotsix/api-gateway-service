@@ -3,7 +3,7 @@ server:
 
 spring:
   application:
-    name: api-gateway-server
+    name: api-gateway-service
   main:
     web-application-type: reactive
   cloud:
@@ -18,12 +18,14 @@ spring:
             - Path=/api/v1/members/**
           filters:
             - TokenRelay
+
         - id: payment-service
           uri: lb://payment-service
           predicates:
           - Path=/api/v1/payments/**
           filters:
           - TokenRelay
+          
         - id: review-service
           uri: lb://review-service
           predicates:
@@ -58,6 +60,7 @@ spring:
             - Path=/api/v1/stats/**
           filters:
             - TokenRelay
+            
         - id: cart-service
           uri: lb://cart-service
           predicates:
