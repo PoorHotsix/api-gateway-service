@@ -64,6 +64,13 @@ spring:
             - Path=/api/v1/carts/**
           filters:
             - TokenRelay
+        
+        - id: bestsellers-service
+          uri: lb://bestsellers-service
+          predicates:
+            - Path=/api/v1/bestsellers/**
+          filters:
+            - TokenRelay
        
       # Spring Cloud Gateway에서 CORS(Cross-Origin Resource Sharing)를 전역(Global)으로 설정
       globalcors:
