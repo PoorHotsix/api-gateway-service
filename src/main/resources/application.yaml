@@ -8,7 +8,6 @@ spring:
     active: ${SRPING_PROFILES_ACTIVE}
   main:
     web-application-type: reactive
-
   cloud:
     gateway:    # Spring Cloud Gateway를 활용한 API Gateway Server 구성
       discovery:
@@ -21,16 +20,71 @@ spring:
             - Path=/api/v1/members/**
           filters:
             - TokenRelay
-       
+        - id: payment-service
+          uri: lb://payment-service
+          predicates:
+          - Path=/api/v1/payments/**
+          filters:
+          - TokenRelay
+        - id: review-service
+          uri: lb://review-service
+          predicates:
+            - Path=/api/v1/reviews/**
+          filters:
+            - TokenRelay
+
+        - id: product-service
+          uri: lb://product-service
+          predicates:
+            - Path=/api/v1/products/**
+          filters:
+            - TokenRelay
+
+        - id: product-service2
+          uri: lb://product-service
+          predicates:
+            - Path=/api/v1/categories/**
+          filters:
+            - TokenRelay
+
+        - id: order-service
+          uri: lb://order-service
+          predicates:
+            - Path=/api/v1/orders/**
+          filters:
+            - TokenRelay
+
+        - id: stats-service
+          uri: lb://stats-service
+          predicates:
+            - Path=/api/v1/stats/**
+          filters:
+            - TokenRelay
+        - id: cart-service
+          uri: lb://cart-service
+          predicates:
+            - Path=/api/v1/carts/**
+          filters:
+            - TokenRelay
+        
+        - id: bestsellers-service
+          uri: lb://bestsellers-service
+          predicates:
+            - Path=/api/v1/bestsellers/**
+          filters:
+            - TokenRelay
        
       # Spring Cloud Gateway에서 CORS(Cross-Origin Resource Sharing)를 전역(Global)으로 설정
       globalcors:
         corsConfigurations:
           '[/**]':  # 모든 요청 경로에 대해 적용
-            #allowedOrigins: "*"  # 모든 도메인 허용 (개발 환경에서만 권장)
+            # allowedOrigins: "*"  # 모든 도메인 허용 (개발 환경에서만 권장)
             allowed-origin-patterns:
-              - "http://localhost:3000"
-              - "http://localhost:5173"
+              - "http://*:3000"
+              - "http://*:5173"
+              - "http://*:11000"
+              - "http://*:12000"
+
             allowedMethods:
               - GET
               - POST
@@ -51,8 +105,8 @@ spring:
     oauth2:
       resourceserver:
         jwt:
-          issuer-uri: ${KEYCLOAK_ISSUER_URI}
-          jwk-set-uri: ${KEYCLOAK_ISSUER_URI}/protocol/openid-connect/certs
+          issuer-uri: http://keycloak:8080/realms/inkcloud
+          jwk-set-uri: ${spring.security.oauth2.resourceserver.jwt.issuer-uri}/protocol/openid-connect/certs
           # jwk-set-uri: http://keycloak:8080/realms/test-realm/protocol/openid-connect/certs
 
 logging:  
@@ -67,12 +121,12 @@ logging:
 # Eureka-Server 에 자가 등록 설정
 #-------------------------------------------------------------------------------
 
-# eureka:
-#   instance:
-#     instance-id: ${spring.application.name}:${spring.cloud.client.hostname}:${server.port}
-#     prefer-ip-address: true   # Eureka 클라이언트가 자신을 등록할 때, 호스트 이름 대신 IP 주소를 사용하여 서비스 레지스리에 등록한다.
-#   client:  
-#     register-with-eureka: true  
-#     fetch-registry: true
-#     service-url:
-#       defaultZone: http://localhost:8761/eureka
+eureka:
+  instance:
+    instance-id: ${spring.application.name}:${spring.cloud.client.hostname}:${server.port}
+    prefer-ip-address: true   # Eureka 클라이언트가 자신을 등록할 때, 호스트 이름 대신 IP 주소를 사용하여 서비스 레지스리에 등록한다.
+  client:  
+    register-with-eureka: true  
+    fetch-registry: true
+    service-url:
+      defaultZone: http://eureka-server:8761/eureka
