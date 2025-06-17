@@ -10,7 +10,7 @@ spring:
     gateway:    # Spring Cloud Gateway를 활용한 API Gateway Server 구성
       discovery:
         locator:
-          enabled: true # Eureka에 등록된 서비스 이름 기반으로 라우팅 가능
+          enabled: false # Eureka에 등록된 서비스 이름 기반으로 라우팅 가능
       routes:
         - id: member-service
           uri: ${MEMBER_SERVICE_API_URL}
