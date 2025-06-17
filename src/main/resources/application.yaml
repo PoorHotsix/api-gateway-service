@@ -15,7 +15,7 @@ spring:
           enabled: false # Eureka에 등록된 서비스 이름 기반으로 라우팅 가능
       routes:
         - id: member-service
-          uri: lb://member-service
+          uri: ${MEMBER_SERVICE_API_URL}
           predicates:
             - Path=/api/v1/members/**
           filters:
