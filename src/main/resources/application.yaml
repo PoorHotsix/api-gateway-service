@@ -13,60 +13,63 @@ spring:
           enabled: true # Eureka에 등록된 서비스 이름 기반으로 라우팅 가능
       routes:
         - id: member-service
-          uri: lb://member-service
+          uri: ${MEMBER_SERVICE_API_URL}
           predicates:
             - Path=/api/v1/members/**
           filters:
             - TokenRelay
+
         - id: payment-service
-          uri: lb://payment-service
+          uri: ${PAYMENT_SERVICE_API_URL}
           predicates:
           - Path=/api/v1/payments/**
           filters:
           - TokenRelay
+
         - id: review-service
-          uri: lb://review-service
+          uri: ${REVIEW_SERVICE_API_URL}
           predicates:
             - Path=/api/v1/reviews/**
           filters:
             - TokenRelay
 
         - id: product-service
-          uri: lb://product-service
+          uri: ${PRODUCT_SERVICE_API_URL}
           predicates:
             - Path=/api/v1/products/**
           filters:
             - TokenRelay
 
         - id: product-service2
-          uri: lb://product-service
+          uri: ${PRODUCT_SERVICE_API_URL}
           predicates:
             - Path=/api/v1/categories/**
           filters:
             - TokenRelay
 
         - id: order-service
-          uri: lb://order-service
+          uri: ${ORDER_SERVICE_API_URL}
           predicates:
             - Path=/api/v1/orders/**
           filters:
             - TokenRelay
 
         - id: stats-service
-          uri: lb://stats-service
+          uri: ${STATS_SERVICE_API_URL}
           predicates:
             - Path=/api/v1/stats/**
           filters:
             - TokenRelay
+
         - id: cart-service
-          uri: lb://cart-service
+          uri: ${CART_SERVICE_API_URL}
           predicates:
             - Path=/api/v1/carts/**
           filters:
             - TokenRelay
         
         - id: bestsellers-service
-          uri: lb://bestsellers-service
+          uri: ${BESTSELLERS_SERVICE_API_URL}
           predicates:
             - Path=/api/v1/bestsellers/**
           filters:
@@ -103,7 +106,7 @@ spring:
     oauth2:
       resourceserver:
         jwt:
-          issuer-uri: http://keycloak:8080/realms/inkcloud
+          issuer-uri: ${SPRING_KEYCLOAK_URL}
           jwk-set-uri: ${spring.security.oauth2.resourceserver.jwt.issuer-uri}/protocol/openid-connect/certs
           # jwk-set-uri: http://keycloak:8080/realms/test-realm/protocol/openid-connect/certs
 
@@ -119,12 +122,12 @@ logging:
 # Eureka-Server 에 자가 등록 설정
 #-------------------------------------------------------------------------------
 
-eureka:
-  instance:
-    instance-id: ${spring.application.name}:${spring.cloud.client.hostname}:${server.port}
-    prefer-ip-address: true   # Eureka 클라이언트가 자신을 등록할 때, 호스트 이름 대신 IP 주소를 사용하여 서비스 레지스리에 등록한다.
-  client:  
-    register-with-eureka: true  
-    fetch-registry: true
-    service-url:
-      defaultZone: http://eureka-server:8761/eureka
+# eureka:
+#   instance:
+#     instance-id: ${spring.application.name}:${spring.cloud.client.hostname}:${server.port}
+#     prefer-ip-address: true   # Eureka 클라이언트가 자신을 등록할 때, 호스트 이름 대신 IP 주소를 사용하여 서비스 레지스리에 등록한다.
+#   client:  
+#     register-with-eureka: true  
+#     fetch-registry: true
+#     service-url:
+#       defaultZone: http://eureka-server:8761/eureka
