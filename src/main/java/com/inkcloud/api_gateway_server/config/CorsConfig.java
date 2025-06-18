@@ -11,7 +11,7 @@ public class CorsConfig {
     @Bean
     public CorsWebFilter corsWebFilter() {
         CorsConfiguration config = new CorsConfiguration();
-        config.addAllowedOrigin("http://localhost:3000");
+        config.addAllowedOrigin("https://www.inkcloud.click");
         config.setAllowedMethods(
             java.util.Arrays.asList("GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS")
         );
