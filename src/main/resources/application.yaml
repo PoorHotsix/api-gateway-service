@@ -20,7 +20,6 @@ spring:
             - Path=/api/v1/members/**
           filters:
             - TokenRelay
-            - StripPrefix=0
 
         - id: payment-service
           uri: ${PAYMENT_SERVICE_API_URL}
@@ -82,8 +81,10 @@ spring:
       globalcors:
         corsConfigurations:
           '[/**]':  # 모든 요청 경로에 대해 적용
-            allowedOrigins: "*"  # 모든 도메인 허용 (개발 환경에서만 권장)
-
+            allowedOrigins:
+            #  "*"  # 모든 도메인 허용 (개발 환경에서만 권장)
+            - "https://www.inkcloud.click"
+            - "https://inkcloud.click"
             allowedMethods:
               - GET
               - POST
