@@ -20,6 +20,7 @@ spring:
             - Path=/api/v1/members/**
           filters:
             - TokenRelay
+            - StripPrefix=0
 
         - id: payment-service
           uri: ${PAYMENT_SERVICE_API_URL}
