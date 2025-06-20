@@ -71,7 +71,7 @@ spring:
             - TokenRelay
         
         - id: bestsellers-service
-          uri: lb://bestsellers-service
+          uri: ${BESTSELLERS_SERVICE_API_URL}
           predicates:
             - Path=/api/v1/bestsellers/**
           filters:
