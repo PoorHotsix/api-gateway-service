@@ -26,6 +26,7 @@ public class SecurityConfig {
                 // .pathMatchers("/api/v1/orders/**").permitAll()
                 .pathMatchers("/api/v1/reviews/products/**").permitAll() // 책별 리뷰 조회는 토큰 없이 허용
                 .pathMatchers("/api/v1/products/**", "/api/v1/categories/**").permitAll() // 책별 리뷰 조회는 토큰 없이 허용
+                .pathMatchers("/api/v1/bestsellers", "/api/v1/bestsellers/**").permitAll()
                 .anyExchange().authenticated()
             )
             .oauth2ResourceServer(oauth2 -> oauth2.jwt(Customizer.withDefaults()));
